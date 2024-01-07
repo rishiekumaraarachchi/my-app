@@ -1,0 +1,94 @@
+import logo from "./logo.svg";
+import "./App.css";
+import Main from "./Components/Main";
+import { useState } from "react";
+
+const mydata = [
+  {
+    id: 1,
+    name: "A",
+    city: "B",
+    position: "Web Developer",
+  },
+
+  {
+    id: 2,
+    name: "C",
+    city: "D",
+    position: "Mern Developer",
+  },
+
+  {
+    id: 3,
+    name: "E",
+    city: "F",
+    position: "React Developer",
+  },
+];
+// const NewBlock = () => {
+//   return (
+//     <div>
+//       {mydata.map(({ name, city, position, id }) => {
+//         return <Main key={id} name={name} city={city} position={position} />;
+//       })}
+//       ;
+//     </div>
+//   );
+// };
+
+function App() {
+  const [myVar, setMyVar] = useState("Auk");
+  const clickHandle = () => {
+    setMyVar("React");
+    console.log(myVar);
+  };
+  const data = mydata.map(({ name, city, position, id }) => (
+    <Main key={id} name={name} city={city} position={position} />
+  ));
+
+  return (
+    <div className="mainBlock">
+      {/* <h3>{mydata.length === 0 ? "noname" : ` ${mydata[0].name}`}</h3> */}
+      <h1>Auk React App</h1>
+      <h3>{myVar}</h3>
+      <div className="mainBlock_container">{data}</div>
+      <br />
+      <button
+        style={{
+          backgroundColor: "red",
+          color: "white",
+          padding: "10px",
+          borderRadius: "10px",
+          border: "none",
+          cursor: "pointer",
+          outline: "none",
+          transition: "background-color 0.3s", // Add a smooth transition for the background color
+        }}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "blue")} // Change background color on hover
+        onMouseOut={(e) => (e.target.style.backgroundColor = "red")} // Revert to the original color on mouse out
+        onClick={clickHandle}
+      >
+        Click Me
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
+
+//Main
+import image from "../Images/image.jpg";
+
+function Main(props) {
+  return (
+    <div>
+      <img src={image} alt="img" />
+      <p>Name: {props.name}</p>
+      <p>City: {props.city}</p>
+      <p>Position: {props.position}</p>
+    </div>
+  );
+}
+
+export default Main;
