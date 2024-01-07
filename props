@@ -1,0 +1,29 @@
+// ParentComponent.js
+import React from 'react';
+import ChildComponent from './ChildComponent';
+
+function ParentComponent() {
+  const data = 'Hello from parent!';
+
+  return (
+    <div>
+      <ChildComponent message={data} />
+    </div>
+  );
+}
+
+export default ParentComponent;
+
+
+// ChildComponent.js
+import React from 'react';
+
+function ChildComponent(props) {
+  return (
+    <div>
+      <p>{props.message}</p>
+    </div>
+  );
+}
+
+export default ChildComponent;
