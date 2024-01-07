@@ -1,0 +1,86 @@
+import logo from "./logo.svg";
+import "./App.css";
+import Main from "./Components/Main";
+const mydata = [
+  {
+    name: "A",
+    city: "B",
+    position: "Web Developer",
+  },
+
+  {
+    name: "C",
+    city: "D",
+    position: "Mern Developer",
+  },
+
+  {
+    name: "E",
+    city: "F",
+    position: "React Developer",
+  },
+];
+
+function App() {
+  return (
+    <div>
+      <h1>Auk React App</h1>
+      <Main> AUK </Main> <Main />
+      {mydata.map((ele) => {
+        return (
+          <div>
+            <h1>{ele.name}</h1>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default App;
+
+--------------------------------------------------------------------------
+import logo from "./logo.svg";
+import "./App.css";
+import Main from "./Components/Main";
+const mydata = [
+  {
+    name: "A",
+    city: "B",
+    position: "Web Developer",
+  },
+
+  {
+    name: "C",
+    city: "D",
+    position: "Mern Developer",
+  },
+
+  {
+    name: "E",
+    city: "F",
+    position: "React Developer",
+  },
+];
+
+function App() {
+  return (
+    <div>
+      <h1>Auk React App</h1>
+      <Main> AUK </Main> <Main />
+      // Destructuring
+      {mydata.map(({ name, city, position }) => {
+        return (
+          <div>
+            <h1>{name}</h1>
+            <h2>{city}</h2>
+            <h3>{position}</h3>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default App;
+

@@ -1,0 +1,22 @@
+// Example object
+const person = { name: 'John', age: 30, city: 'New York' };
+
+// Destructuring assignment
+const { name, age, city } = person;
+
+// Using the extracted values
+console.log(name);  // Output: John
+console.log(age);   // Output: 30
+console.log(city);  // Output: New York
+
+
+// Example array
+const numbers = [1, 2, 3, 4, 5];
+
+// Destructuring assignment
+const [first, second, , fourth] = numbers;
+
+// Using the extracted values
+console.log(first);   // Output: 1
+console.log(second);  // Output: 2
+console.log(fourth);  // Output: 4
