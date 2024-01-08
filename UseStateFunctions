@@ -1,0 +1,122 @@
+import "./App.css";
+import Main from "./Components/Main";
+import { useState } from "react";
+
+const mydata = [
+  {
+    id: 1,
+    name: "A",
+    city: "B",
+    position: "Web Developer",
+  },
+
+  {
+    id: 2,
+    name: "C",
+    city: "D",
+    position: "Mern Developer",
+  },
+
+  {
+    id: 3,
+    name: "E",
+    city: "F",
+    position: "React Developer",
+  },
+];
+// const NewBlock = () => {
+//   return (
+//     <div>
+//       {mydata.map(({ name, city, position, id }) => {
+//         return <Main key={id} name={name} city={city} position={position} />;
+//       })}
+//       ;
+//     </div>
+//   );
+// };
+
+function App() {
+  const [myVar, setMyVar] = useState({
+    name: "Auk",
+    city: "React",
+    position: "Developer",
+  });
+
+  const [mydataState, setMydataState] = useState(mydata);
+  const [inputVal, setInputVal] = useState("");
+
+  const clickHandle = () => {
+    setMyVar({
+      ...myVar,
+      name: "Rishie",
+    });
+    setMydataState([
+      ...mydataState,
+      {
+        id: 4,
+        name: "G",
+        city: "H",
+        position: "React Developer",
+      },
+    ]);
+  };
+
+  console.log(mydataState);
+  const data = mydataState.map(({ name, city, position, id }, index) => (
+    <Main key={id + index} name={name} city={city} position={position} />
+  ));
+
+  const inputHandle = (event, data) => {
+    event.preventDefault();
+    setInputVal(event.target.value);
+  };
+
+  return (
+    <div className="mainBlock">
+      {/* <h3>{mydata.length === 0 ? "noname" : ` ${mydata[0].name}`}</h3> */}
+      <h1>Auk React App</h1>
+      <h2>{inputVal}</h2>
+      <h3>
+        Name: {myVar.name}, City: {myVar.city}, Position: {myVar.position}
+      </h3>
+
+      <div className="mainBlock_container">{data}</div>
+      <br />
+      <button
+        style={{
+          backgroundColor: "red",
+          color: "white",
+          padding: "10px",
+          borderRadius: "10px",
+          border: "none",
+          cursor: "pointer",
+          outline: "none",
+          transition: "background-color 0.3s", // Add a smooth transition for the background color
+        }}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "blue")} // Change background color on hover
+        onMouseOut={(e) => (e.target.style.backgroundColor = "red")} // Revert to the original color on mouse out
+        onClick={clickHandle}
+      >
+        Click Me
+      </button>
+      <br />
+      <input
+        style={{
+          padding: "10px",
+          borderRadius: "10px",
+          border: "1px solid Black",
+          outline: "2px solid black",
+          transition: "background-color 0.3s", // Add a smooth transition for the background color
+        }}
+        type="text"
+        onChange={(event) => {
+          // e.preventDefault();
+          // setInputVal(e.target.value);
+          inputHandle(event, inputVal);
+        }}
+      />
+    </div>
+  );
+}
+
+export default App;
