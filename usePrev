@@ -1,0 +1,85 @@
+import "./App.css";
+import Main from "./Components/Main";
+import { useState } from "react";
+
+const mydata = [
+  {
+    id: 1,
+    name: "A",
+    city: "B",
+    position: "Web Developer",
+  },
+  {
+    id: 2,
+    name: "C",
+    city: "D",
+    position: "Mern Developer",
+  },
+  {
+    id: 3,
+    name: "E",
+    city: "F",
+    position: "React Developer",
+  },
+];
+
+function App() {
+  const [inputVal, setInputVal] = useState(0);
+
+  const clickHandle = () => {
+    setTimeout(() => {
+      console.log("Clicked");
+      setInputVal((prev) => prev + 1);
+    }, 1000);
+  };
+
+  const data = mydata.map(({ name, city, position, id }, index) => (
+    <Main key={id + index} name={name} city={city} position={position} />
+  ));
+
+  return (
+    <div className="mainBlock">
+      <h1>Auk React App</h1>
+      <h2>{inputVal}</h2>
+      <h3>
+        Name: {mydata[0].name}, City: {mydata[0].city}, Position:{" "}
+        {mydata[0].position}
+      </h3>
+
+      <div className="mainBlock_container">{data}</div>
+      <br />
+      <button
+        style={{
+          backgroundColor: "red",
+          color: "white",
+          padding: "10px",
+          borderRadius: "10px",
+          border: "none",
+          cursor: "pointer",
+          outline: "none",
+          transition: "background-color 0.3s",
+        }}
+        onMouseOver={(e) => (e.target.style.backgroundColor = "blue")}
+        onMouseOut={(e) => (e.target.style.backgroundColor = "red")}
+        onClick={clickHandle}
+      >
+        Click Me
+      </button>
+      <br />
+      <input
+        style={{
+          padding: "10px",
+          borderRadius: "10px",
+          border: "1px solid black",
+          outline: "2px solid black",
+          transition: "background-color 0.3s",
+        }}
+        type="text"
+        value={inputVal}
+        onChange={(event) => setInputVal(event.target.value)}
+      />
+    </div>
+  );
+}
+
+export default App;
