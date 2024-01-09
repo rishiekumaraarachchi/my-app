@@ -1,0 +1,106 @@
+import React, { useState } from "react";
+import "./App.css";
+import Unit from "./Components/Unit"; // Make sure the path is correct
+
+const App = () => {
+  const [imageUrls, setImageUrls] = useState("");
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  const [position, setPosition] = useState("");
+
+  const [myData, setMyData] = useState([]);
+
+  const handleImageUrlChange = (e) => {
+    e.preventDefault();
+    setImageUrls(e.target.value);
+  };
+
+  const handleNameChange = (e) => {
+    e.preventDefault();
+    setName(e.target.value);
+  };
+
+  const handleCityChange = (e) => {
+    e.preventDefault();
+    setCity(e.target.value);
+  };
+
+  const handlePositionChange = (e) => {
+    e.preventDefault();
+    setPosition(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Add your logic for handling the submitted data (e.g., sending it to a server)
+    setMyData((pre) => [...pre, { imageUrls, name, city, position }]);
+    console.log(myData);
+
+    // Optionally, you can reset the input fields after submission
+    setImageUrls((pre) => (pre.length > 0 ? "" : pre));
+    setName((pre) => (pre.length > 0 ? "" : pre));
+    setCity((pre) => (pre.length > 0 ? "" : pre));
+    setPosition((pre) => (pre.length > 0 ? "" : pre));
+  };
+
+  return (
+    <div className="main_container">
+      <div className="main_left">
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={imageUrls}
+          onChange={handleImageUrlChange}
+        />
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={handleNameChange}
+        />
+        <input
+          type="text"
+          placeholder="City"
+          value={city}
+          onChange={handleCityChange}
+        />
+        <input
+          type="text"
+          placeholder="Position"
+          value={position}
+          onChange={handlePositionChange}
+        />
+        <button onClick={handleSubmit}>Submit</button>
+      </div>
+      <div className="main_right">
+        {myData?.map(({ imageUrls, name, city, position }, index) => (
+          <Unit
+            image={imageUrls} // Fix the prop name here
+            name={name}
+            city={city}
+            position={position}
+            key={index}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default App;
+
+
+----------------------------------------------------------
+
+import "../App.css";
+const Unit = ({ image, name, city, position }) => {
+  return (
+    <div className="unit_container">
+      <img src={image} alt={name} />
+      <p>Name: {name}</p>
+      <p>City: {city}</p>
+      <p>Position: {position}</p>
+    </div>
+  );
+};
+
+export default Unit;
